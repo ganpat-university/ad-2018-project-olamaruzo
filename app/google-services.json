@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "416491905397",
+    "firebase_url": "https://olamaruzo.firebaseio.com",
+    "project_id": "olamaruzo",
+    "storage_bucket": "olamaruzo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416491905397:android:b86e3f164a93538804333c",
+        "android_client_info": {
+          "package_name": "com.example.olamaruzo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416491905397-1vnilchgkpo3g0fjcs0s4dpi4068vf53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.olamaruzo",
+            "certificate_hash": "d3500e64be9f02f5f8685f68125f13067f32eb52"
+          }
+        },
+        {
+          "client_id": "416491905397-1odchud013gv6jtoft72vcphlffou62n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-z7NOHvI5jOtpHDxU6EoK14nSvD6r6PU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416491905397-1odchud013gv6jtoft72vcphlffou62n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
