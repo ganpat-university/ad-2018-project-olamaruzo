@@ -1,8 +1,9 @@
 
 package com.example.olamaruzo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +12,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.Student;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class registration extends AppCompatActivity {
     Button submit,clear;
     RadioGroup designation;
     RadioButton selected;
+    FirebaseFirestore db;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +31,9 @@ public class registration extends AppCompatActivity {
         submit=(Button)findViewById(R.id.button2);
         clear=(Button)findViewById(R.id.button3);
         designation=(RadioGroup)findViewById(R.id.radioGroup);
+
+        db= FirebaseFirestore.getInstance();
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +45,7 @@ public class registration extends AppCompatActivity {
                 EditText text5=findViewById(R.id.editText3);
                 EditText text6=findViewById(R.id.editText6);
                 EditText text7=findViewById(R.id.editText8);
+                EditText text8=findViewById(R.id.radioGroup);
                 if(text3.getText().toString().trim().length()==0){
                     Toast.makeText(registration.this,"First name cannot be left blank",Toast.LENGTH_SHORT).show();
                 }
@@ -62,9 +75,31 @@ public class registration extends AppCompatActivity {
                 }
                 else{
                     selected=(RadioButton)findViewById(designation.getCheckedRadioButtonId());
-                }
+                    Student student = new Student(text1.getText().toString(),text2.getText().toString(),text3.getText().toString(),
+                            text4.getText().toString(),text5.getText().toString(),text6.getText().toString(),text7.getText().toString(),
+                            text8.getText().toString());
+                    db.collection("StudentInformation").document(text1.getText().toString()).set(student)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful())
+                                    {
+                                        Toast.makeText(getApplicationContext(),"Data Stored Successfully",Toast.LENGTH_LONG).show();
+                                    }
+                                    else
+                                        {
+                                            Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                    }
             }
+
         });
+
+
+
+
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,4 +121,5 @@ public class registration extends AppCompatActivity {
             }
         });
     }
+
 }

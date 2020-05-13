@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.olamaruzo.R;
+
 public class MainActivity extends AppCompatActivity {
 
     int a;
