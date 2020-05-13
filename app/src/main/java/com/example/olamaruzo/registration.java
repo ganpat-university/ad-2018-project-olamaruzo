@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.Student;
+import com.example.Carrier;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,35 +38,35 @@ public class registration extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText text1=findViewById(R.id.editText9);
-                EditText text2=findViewById(R.id.editText10);
-                EditText text3=findViewById(R.id.editText4);
-                EditText text4=findViewById(R.id.editText7);
-                EditText text5=findViewById(R.id.editText3);
-                EditText text6=findViewById(R.id.editText6);
-                EditText text7=findViewById(R.id.editText8);
-                EditText text8=findViewById(R.id.radioGroup);
-                if(text3.getText().toString().trim().length()==0){
+                EditText pass=findViewById(R.id.editText9);
+                EditText cnfpass=findViewById(R.id.editText10);
+                EditText fname=findViewById(R.id.editText4);
+                EditText lname=findViewById(R.id.editText7);
+                EditText contact=findViewById(R.id.editText3);
+                EditText email=findViewById(R.id.editText6);
+                EditText aadhar=findViewById(R.id.editText8);
+                designation=(RadioGroup) findViewById(R.id.radioGroup);
+                if(fname.getText().toString().trim().length()==0){
                     Toast.makeText(registration.this,"First name cannot be left blank",Toast.LENGTH_SHORT).show();
                 }
-                else if(text4.getText().toString().trim().length()==0){
+                else if(lname.getText().toString().trim().length()==0){
                     Toast.makeText(registration.this, "Last name cannot be left blank", Toast.LENGTH_SHORT).show();
                 }
-                else if(text5.getText().toString().trim().length()<10 ||
-                        (text5.getText().toString().charAt(0)!='9' && text5.getText().toString().charAt(0)!='8' &&
-                                text5.getText().toString().charAt(0)!='7' && text5.getText().toString().charAt(0)!='6')){
+                else if(contact.getText().toString().trim().length()<10 ||
+                        (contact.getText().toString().charAt(0)!='9' && contact.getText().toString().charAt(0)!='8' &&
+                                contact.getText().toString().charAt(0)!='7' && contact.getText().toString().charAt(0)!='6')){
                     Toast.makeText(registration.this, "Please Enter a proper contact number", Toast.LENGTH_SHORT).show();
                 }
-                else if(!text6.getText().toString().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")){
+                else if(!email.getText().toString().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")){
                     Toast.makeText(registration.this,"Please enter a valid e-mail id",Toast.LENGTH_SHORT).show();
                 }
-                else if(text7.getText().toString().trim().length()<12){
+                else if(aadhar.getText().toString().trim().length()<12){
                     Toast.makeText(registration.this,"Please enter proper aadhar number",Toast.LENGTH_SHORT).show();
                 }
-                else if(text1.getText().toString().trim().length()==0 || text2.getText().toString().trim().length()==0){
+                else if(pass.getText().toString().trim().length()==0 || cnfpass.getText().toString().trim().length()==0){
                     Toast.makeText(registration.this, "Password fields cannot be left blank", Toast.LENGTH_SHORT).show();
                 }
-                else if(!text1.getText().toString().equals(text2.getText().toString())){
+                else if(!pass.getText().toString().equals(cnfpass.getText().toString())){
                     Toast.makeText(registration.this, "Please enter password properly", Toast.LENGTH_SHORT).show();
                 }
                 else if(designation.getCheckedRadioButtonId()==-1){
@@ -75,10 +75,10 @@ public class registration extends AppCompatActivity {
                 }
                 else{
                     selected=(RadioButton)findViewById(designation.getCheckedRadioButtonId());
-                    Student student = new Student(text1.getText().toString(),text2.getText().toString(),text3.getText().toString(),
-                            text4.getText().toString(),text5.getText().toString(),text6.getText().toString(),text7.getText().toString(),
-                            text8.getText().toString());
-                    db.collection("StudentInformation").document(text1.getText().toString()).set(student)
+                    UserDataModel carrier = new UserDataModel(fname.getText().toString(),lname.getText().toString(),
+                            contact.getText().toString(),email.getText().toString(),aadhar.getText().toString(),pass.getText().toString(),
+                            selected.getText().toString());
+                    db.collection("CarrierInformation").document(fname.getText().toString()+" "+lname.getText().toString()+" "+contact.getText().toString()+" ").set(carrier)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -87,12 +87,12 @@ public class registration extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Data Stored Successfully",Toast.LENGTH_LONG).show();
                                     }
                                     else
-                                        {
-                                            Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
-                                        }
+                                    {
+                                        Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
                                     }
-                                });
-                    }
+                                }
+                            });
+                }
             }
 
         });
@@ -103,20 +103,20 @@ public class registration extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText text1=findViewById(R.id.editText9);
-                EditText text2=findViewById(R.id.editText10);
-                EditText text3=findViewById(R.id.editText4);
-                EditText text4=findViewById(R.id.editText7);
-                EditText text5=findViewById(R.id.editText3);
-                EditText text6=findViewById(R.id.editText6);
-                EditText text7=findViewById(R.id.editText8);
-                text1.getText().clear();
-                text2.getText().clear();
-                text3.getText().clear();
-                text4.getText().clear();
-                text5.getText().clear();
-                text6.getText().clear();
-                text7.getText().clear();
+                EditText pass=findViewById(R.id.editText9);
+                EditText cnfpass=findViewById(R.id.editText10);
+                EditText fname=findViewById(R.id.editText4);
+                EditText lname=findViewById(R.id.editText7);
+                EditText contact=findViewById(R.id.editText3);
+                EditText email=findViewById(R.id.editText6);
+                EditText aadhar=findViewById(R.id.editText8);
+                pass.getText().clear();
+                cnfpass.getText().clear();
+                fname.getText().clear();
+                lname.getText().clear();
+                contact.getText().clear();
+                email.getText().clear();
+                aadhar.getText().clear();
                 designation.clearCheck();
             }
         });

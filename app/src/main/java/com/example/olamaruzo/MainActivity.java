@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Password cannot be left blank", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    UserDataModel user=new UserDataModel(text1.getText().toString(),text2.getText().toString());
+                    /*UserDataModel user=new UserDataModel(text1.getText().toString(),text2.getText().toString());
                     db.collection("users").document(text1.getText().toString())
                             .set(user)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
 
                                 }
-                            });
+                            });*/
 
                 }
             }

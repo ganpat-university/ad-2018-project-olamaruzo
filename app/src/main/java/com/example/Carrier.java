@@ -1,16 +1,15 @@
 package com.example;
 
-public class Student {
-    public String fname,lname,contact,email,aadhar,pass,cpass,designation;
+public class Carrier {
+    public String fname,lname,contact,email,aadhar,pass,designation;
 
-    public Student(String fname, String lname, String contact, String email, String aadhar, String pass, String cpass, String designation) {
+    public Carrier(String fname, String lname, String contact, String email, String aadhar, String pass, String designation) {
         this.fname = fname;
         this.lname = lname;
         this.contact = contact;
         this.email = email;
         this.aadhar = aadhar;
         this.pass = pass;
-        this.cpass = cpass;
         this.designation = designation;
     }
 
@@ -62,14 +61,6 @@ public class Student {
         this.pass = pass;
     }
 
-    public String getCpass() {
-        return cpass;
-    }
-
-    public void setCpass(String cpass) {
-        this.cpass = cpass;
-    }
-
     public String getDesignation() {
         return designation;
     }
@@ -77,7 +68,7 @@ public class Student {
     public void setDesignation(String designation) {
         this.designation = designation;
     }
-    public Student()
+    public Carrier()
     {
 
     }
