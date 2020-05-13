@@ -23,4 +23,6 @@ public class UserDataModel {
     public void setAadhar(String aadhar) { this.aadhar = aadhar; }
     public String getPass() { return pass; }
     public void setPass(String pass) { this.pass = pass; }
+    public String getDesignation() { return designation; }
+    public void setDesignation(String designation) { this.designation = designation; }
 }
