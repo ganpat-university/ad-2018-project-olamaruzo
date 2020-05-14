@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     TextView reg,fp;
     FirebaseFirestore db;
+    // String ab,bc;
     public boolean isvalid(String str){
         Pattern p = Pattern.compile("[6-9][0-9]{9}");
         Matcher m = p.matcher(str);
@@ -48,6 +53,40 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Password cannot be left blank", Toast.LENGTH_SHORT).show();
                 }
                 else{
+
+                    /* ab = text1.getText().toString();
+                    bc = text2.getText().toString();
+                    CollectionReference def = (CollectionReference) FirebaseFirestore.getInstance().collection("CarrierInformation").whereEqualTo("pass",bc);
+                    def.get().addOnCompleteListener(new OnCompleteListener<QueryDocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful())
+                            {
+                                QueryDocumentSnapshot document1 = task.getResult();
+                                if(document1.exists())
+                                {
+                                    CollectionReference ref = (CollectionReference) FirebaseFirestore.getInstance().collection("CarrierInformation").whereEqualTo("email",ab);
+
+                                    ref.get().addOnCompleteListener(new OnCompleteListener<QueryDocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                QueryDocumentSnapshot document = task.getResult();
+                                                if(document.exists())
+                                                {
+                                                    Toast.makeText(getApplicationContext(),"You're a Registered User", Toast.LENGTH_LONG);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }); *\
+
+
+
                     /*UserDataModel user=new UserDataModel(text1.getText().toString(),text2.getText().toString());
                     db.collection("users").document(text1.getText().toString())
                             .set(user)

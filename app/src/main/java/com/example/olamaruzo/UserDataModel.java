@@ -1,8 +1,7 @@
 package com.example.olamaruzo;
 
 public class UserDataModel {
-<<<<<<< HEAD
-    String fname,lname,contact,email,aadhar,pass,designation;
+    private String fname,lname,contact,email,aadhar,pass,designation;
     UserDataModel(String fname, String lname, String contact, String email, String aadhar, String pass, String designation) {
         this.fname = fname;
         this.lname = lname;
@@ -26,29 +25,5 @@ public class UserDataModel {
     public void setPass(String pass) { this.pass = pass; }
     public String getDesignation() { return designation; }
     public void setDesignation(String designation) { this.designation = designation; }
-=======
-    String email;
-    String password;
-    UserDataModel(String email,String password)
-    {
-        this.email=email;
-        this.password=password;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
->>>>>>> Firebase added
 }
