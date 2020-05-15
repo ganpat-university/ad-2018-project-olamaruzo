@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,8 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 public class MainActivity extends AppCompatActivity {
 
+    public static final String MSG = "com.android.olamaruzo.MainActivity";
+    SharedPreferences pref;
     Button login;
     TextView reg,fp;
     FirebaseFirestore db;
@@ -37,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pref=getSharedPreferences("Login",MODE_PRIVATE);
+        if(pref.contains("fname") && pref.contains("Email") && pref.contains("Cost")){
+            startActivity(new Intent(MainActivity.this,home_page.class));
+        }
         login=(Button)findViewById(R.id.button);
         fp=findViewById(R.id.textView4);
         reg=findViewById(R.id.textView2);
@@ -53,7 +60,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Password cannot be left blank", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
+                    //Authentication Code Here
+                    Intent intent = new Intent(MainActivity.this, home_page.class);
+                    SharedPreferences.Editor edit= pref.edit();
+                    //Please use fetched fname instead of "testing user" and cost should also be fetched
+                    edit.putString("fname","testing user");
+                    edit.putString("Email","test123@gmail.com");
+                    edit.putString("Cost","0");
+                    edit.commit();
+                    startActivity(intent);
                     /* ab = text1.getText().toString();
                     bc = text2.getText().toString();
                     CollectionReference def = (CollectionReference) FirebaseFirestore.getInstance().collection("CarrierInformation").whereEqualTo("pass",bc);
